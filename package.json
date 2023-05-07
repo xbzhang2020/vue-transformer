@@ -1,0 +1,7 @@
+{
+  "name": "vue-transformer",
+  "packageManager": "yarn@3.5.1",
+  "devDependencies": {
+    "prettier": "^2.8.8"
+  }
+}
