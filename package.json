@@ -1,7 +1,11 @@
 {
   "name": "vue-transformer",
+  "version": "1.0.0-alpha.0",
   "packageManager": "yarn@3.5.1",
   "devDependencies": {
     "prettier": "^2.8.8"
+  },
+  "repository": {
+    "url": "https://github.com/xbzhang2020/vue-transformer.git"
   }
 }
