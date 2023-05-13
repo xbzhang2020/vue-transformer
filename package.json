@@ -2,10 +2,19 @@
   "name": "vue-transformer",
   "version": "1.0.0-alpha.1",
   "main": "./src/index.js",
+  "scripts": {
+    "dev": "vite"
+  },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "vite": "^4.3.5",
+    "vite-plugin-vue2": "^2.0.3",
+    "vue": "2.6.14"
   },
   "repository": {
     "url": "https://github.com/xbzhang2020/vue-transformer.git"
+  },
+  "dependencies": {
+    "vue-template-compiler": "2.6.14"
   }
 }
