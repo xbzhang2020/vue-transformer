@@ -23,8 +23,13 @@ export const transformVue = () => {
         const exportNodeType = path.node.declaration.type
         if (exportNodeType === 'ClassDeclaration') {
           const declaration = path.node.declaration as t.ClassDeclaration
-          const name = declaration.id.name
+          const decorator = declaration.decorators?.[0]?.expression
+          // 判断是否为 Vue 组件
+          if (!t.isIdentifier(decorator) || decorator.name !== 'Component') {
+            return
+          }
 
+          const name = declaration.id.name
           const ast = defineComponentTemplate({
             SOURCE: getComponentOptionsExpression({
               name: t.stringLiteral(name),
