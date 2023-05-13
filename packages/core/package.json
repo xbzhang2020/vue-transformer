@@ -26,6 +26,7 @@
     "vue2-example": "workspace:^"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
     "vue": "^2.6.14"
   }
 }
