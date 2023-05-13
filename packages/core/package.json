@@ -3,6 +3,7 @@
   "version": "1.0.0-alpha.1",
   "description": "vue-transformer",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +22,10 @@
   },
   "homepage": "https://github.com/xbzhang2020/vue-transformer#readme",
   "dependencies": {
-    "vue-template-compiler": "2.6.14",
+    "vue-template-compiler": "^2.6.14",
     "vue2-example": "workspace:^"
+  },
+  "devDependencies": {
+    "vue": "^2.6.14"
   }
 }

@@ -1,7 +1,15 @@
 <template>
-    <div>hello</div>
+  <div>
+    <OptionBase />
+  </div>
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+import OptionBase from './components/option-base.vue';
+
+export default {
+  components: {
+    OptionBase
+  }
+}
 </script>
