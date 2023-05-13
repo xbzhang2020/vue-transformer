@@ -8,8 +8,11 @@ type ComponentOptionsExpressionParams = Partial<Record<keyof ComponentOptions<Vu
 export const transformVue = () => {
   const defineComponentTemplate = template(`defineComponent(SOURCE)`)
 
-  const getComponentOptionsExpression = (options: ComponentOptionsExpressionParams) => {
-    const properties = []
+  const getComponentOptionsExpression = (
+    options: ComponentOptionsExpressionParams,
+    otherProperties: t.ObjectProperty[] = []
+  ) => {
+    const properties = otherProperties
     for (const key in options) {
       const expression = options[key as keyof ComponentOptionsExpressionParams] as t.Expression
       properties.push(t.objectProperty(t.stringLiteral(key), expression))
@@ -24,16 +27,34 @@ export const transformVue = () => {
         if (exportNodeType === 'ClassDeclaration') {
           const declaration = path.node.declaration as t.ClassDeclaration
           const decorator = declaration.decorators?.[0]?.expression
-          // 判断是否为 Vue 组件
-          if (!t.isIdentifier(decorator) || decorator.name !== 'Component') {
-            return
+          let isVueComponent = false
+          let otherProperties: t.ObjectProperty[] = []
+
+          if (
+            t.isCallExpression(decorator) &&
+            t.isIdentifier(decorator.callee) &&
+            decorator.callee.name === 'Component'
+          ) {
+            isVueComponent = true
+            const option = decorator.arguments[0] as t.ObjectExpression
+            otherProperties = option.properties as t.ObjectProperty[]
           }
+
+          // 判断是否为 Vue 组件
+          if (t.isIdentifier(decorator) && decorator.name == 'Component') {
+            isVueComponent = true
+          }
+
+          if (!isVueComponent) return
 
           const name = declaration.id.name
           const ast = defineComponentTemplate({
-            SOURCE: getComponentOptionsExpression({
-              name: t.stringLiteral(name),
-            }),
+            SOURCE: getComponentOptionsExpression(
+              {
+                name: t.stringLiteral(name),
+              },
+              otherProperties
+            ),
           }) as t.ExpressionStatement
 
           path.get('declaration').replaceWith(ast.expression)
