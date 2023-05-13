@@ -4,13 +4,11 @@ export const transformVue = ({ types, template }) => {
       ExportDefaultDeclaration(path) {
         // console.log(path.node.declaration)
         // console.log(path.get('declaration'))
-
-        const ast = template(`defineComponent(SOURCE)`)({
-          SOURCE: path.node.declaration,
-        })
-
+        // const ast = template(`defineComponent(SOURCE)`)({
+        //   SOURCE: path.node.declaration,
+        // })
         // console.log(generate.default(ast).code)
-        path.get('declaration').replaceWith(ast)
+        // path.get('declaration').replaceWith(ast)
       },
     },
   }

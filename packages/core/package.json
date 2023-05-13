@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
+    "@babel/plugin-syntax-decorators": "^7.21.0",
     "vue": "^2.6.14"
   }
 }

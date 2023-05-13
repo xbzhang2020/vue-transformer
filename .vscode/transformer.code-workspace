@@ -12,5 +12,6 @@
       "path": "../packages/vue2-example",
       "name": "vue2-example"
     }
-  ]
+  ],
+  "settings": {}
 }
