@@ -10,16 +10,16 @@ const code = readFileSync(fileName, 'utf-8')
 
 // 2. 解析 script 部分
 const sfc = compiler.parseComponent(code)
-const script = sfc.script
+const script: any = sfc.script
 // console.log(script)
 
 // 3. 使用 babel 处理 script 部分
-const res = transformSync(script.content, {
+const res: any = transformSync(script.content, {
   sourceType: 'module',
   plugins: [['@babel/plugin-syntax-decorators', { version: '2023-01' }], transformVue],
 })
 const newContent = res.code
-// console.log(res.code)
+console.log(res.code)
 
 // 4. 输出结果
 const content = `${code.slice(0, script.start)}\n${newContent}\n${code.slice(script.end)}`
