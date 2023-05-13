@@ -1,0 +1,23 @@
+{
+  "name": "vue-transformer",
+  "version": "1.0.0-alpha.1",
+  "description": "vue-transformer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xbzhang2020/vue-transformer.git"
+  },
+  "keywords": [
+    "vue",
+    "transform"
+  ],
+  "author": "zhangxingbin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xbzhang2020/vue-transformer/issues"
+  },
+  "homepage": "https://github.com/xbzhang2020/vue-transformer#readme"
+}
