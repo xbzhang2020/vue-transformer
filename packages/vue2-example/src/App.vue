@@ -1,8 +1,8 @@
 <template>
   <div>
-    <OptionBase />
+    <!-- <OptionBase /> -->
     <ClassBase />
-    <VcaBase />
+    <!-- <VcaBase /> -->
   </div>
 </template>
 
