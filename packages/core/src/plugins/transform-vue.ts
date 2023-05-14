@@ -25,7 +25,9 @@ const parseVueClassComponent = (declaration: t.ClassDeclaration) => {
   if (t.isCallExpression(decorator) && t.isIdentifier(decorator.callee) && decorator.callee.name === 'Component') {
     isVueComponent = true
     const option = decorator.arguments[0] as t.ObjectExpression
-    properties.push(...option.properties)
+    if (option) {
+      properties.push(...option.properties)
+    }
   }
 
   if (!isVueComponent) return ast
