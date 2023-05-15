@@ -16,7 +16,8 @@
 /build
 node_modules/
 coverage
-dist
+dist/
+lib/
 package-lock.json
 .idea/
 

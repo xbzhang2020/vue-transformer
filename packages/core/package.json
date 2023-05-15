@@ -5,9 +5,9 @@
   "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup --config rollup.config.js",
-    "dev": "ts-node  --esm ./src/index.ts"
+    "dev": "ts-node  --esm ./src/index.ts",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "@babel/plugin-syntax-decorators": "^7.21.0",
     "@babel/plugin-syntax-typescript": "^7.21.4",
     "@babel/types": "^7.21.5",
+    "@jest/globals": "^29.5.0",
     "@rollup/plugin-typescript": "^11.1.1",
     "@types/babel__core": "^7.20.0",
     "@types/node": "^20.1.3",

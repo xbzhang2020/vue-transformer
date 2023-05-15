@@ -13,7 +13,7 @@ const getScript = (code: string) => {
   return script;
 };
 
-const transform = (code: string) => {
+export const transform = (code: string) => {
   const res = transformSync(code, {
     sourceType: 'module',
     plugins: [
