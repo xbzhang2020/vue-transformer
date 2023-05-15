@@ -15,7 +15,11 @@ const script: any = sfc.script
 // 3. 使用 babel 处理 script 部分
 const res: any = transformSync(script.content, {
   sourceType: 'module',
-  plugins: [['@babel/plugin-syntax-decorators', { version: '2023-01' }], transformVue],
+  plugins: [
+    ['@babel/plugin-syntax-typescript'],
+    ['@babel/plugin-syntax-decorators', { version: '2023-01' }],
+    transformVue,
+  ],
 })
 const newContent = res.code
 console.log(res.code)

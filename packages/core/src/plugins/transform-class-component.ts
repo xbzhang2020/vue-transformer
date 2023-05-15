@@ -23,6 +23,7 @@ const collectDataProperty = (node: t.ClassProperty, state: ClassComponentState) 
     key: node.key,
     value: node.value,
   }
+  console.log(node)
   state.data.push(item)
 }
 

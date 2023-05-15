@@ -12,6 +12,6 @@ import OptionBase from './option-base.vue';
   components: { OptionBase },
 })
 export default class HelloWorld extends Vue {
-  message = 'Hello World!'
+  message: string = 'Hello World!'
 }
 </script>

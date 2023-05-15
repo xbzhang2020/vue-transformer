@@ -26,6 +26,9 @@ importers:
       '@babel/plugin-syntax-decorators':
         specifier: ^7.21.0
         version: registry.npmmirror.com/@babel/plugin-syntax-decorators@7.21.0(@babel/core@7.21.8)
+      '@babel/plugin-syntax-typescript':
+        specifier: ^7.21.4
+        version: registry.npmmirror.com/@babel/plugin-syntax-typescript@7.21.4(@babel/core@7.21.8)
       '@babel/types':
         specifier: ^7.21.5
         version: registry.npmmirror.com/@babel/types@7.21.5
