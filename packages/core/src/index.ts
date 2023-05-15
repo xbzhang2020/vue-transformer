@@ -6,7 +6,6 @@ import { transformVue } from './plugins/transform-vue.js'
 // 1. 读取文件内容
 const fileName = 'node_modules/vue2-example/src/components/class-base.vue'
 const code = readFileSync(fileName, 'utf-8')
-// console.log(code)
 
 // 2. 解析 script 部分
 const sfc = compiler.parseComponent(code)
