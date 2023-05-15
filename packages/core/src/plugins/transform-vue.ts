@@ -33,9 +33,6 @@ const parseVueClassComponent = (declaration: t.ClassDeclaration) => {
   if (!isVueComponent) return ast
 
   // 解析 name
-  const existName = properties.some(
-    (item) => t.isObjectProperty(item) && t.isIdentifier(item.key) && item.key.name === 'name'
-  )
   if (!hasProperty('name', properties)) {
     const name = t.objectProperty(t.identifier('name'), t.stringLiteral(declaration.id.name))
     properties.unshift(name)

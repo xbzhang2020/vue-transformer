@@ -13,5 +13,7 @@
       "name": "vue2-example"
     }
   ],
-  "settings": {}
+  "settings": {
+    "editor.formatOnSave": true
+  }
 }

@@ -7,6 +7,8 @@
     "build": "vite build"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "typescript": "^5.0.4",
     "vite": "^4.3.5",
     "vite-plugin-vue2": "^2.0.3",
