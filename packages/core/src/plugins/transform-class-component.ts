@@ -1,8 +1,11 @@
 import { types as t, template } from '@babel/core';
 import type { PluginObj, Visitor } from '@babel/core';
+import { it } from 'node:test';
 
 // import type Vue from 'vue'
 // import type { ComponentOptions } from 'vue'
+
+// type ComponentOptionsExpressionParams = Partial<Record<keyof ComponentOptions<Vue>, t.Expression>>
 
 interface ClassComponentState {
   data: t.ClassProperty[];
@@ -58,7 +61,7 @@ class ClassComponentParaser {
   }
 
   parseSetupBody() {
-    const data = this.state.data.map(transformDataProperty);
+    const data = this.state.data.map(this.transformData);
     return t.blockStatement(data);
   }
 
