@@ -7,10 +7,9 @@ import type { PluginObj, Visitor } from '@babel/core';
 // type ComponentOptionsExpressionParams = Partial<Record<keyof ComponentOptions<Vue>, t.Expression>>
 
 interface ClassComponentState {
-  data: any[];
+  data: t.ClassProperty[];
 }
 
-const defineComponentTemplate = template(`defineComponent(SOURCE)`);
 const defineRefTemplate = template(`const KEY = ref(VALUE)`);
 
 const hasProperty = (key: string, properties: t.ObjectExpression['properties']) => {
@@ -18,21 +17,23 @@ const hasProperty = (key: string, properties: t.ObjectExpression['properties']) 
   return !!item;
 };
 
-const collectDataProperty = (node: t.ClassProperty, state: ClassComponentState) => {
-  const item = {
-    key: node.key,
-    value: node.value,
-  };
-  console.log(node);
-  state.data.push(item);
-};
-
-const transformDataProperty = (node: any) => {
+const transformDataProperty = (node: t.ClassProperty) => {
   const ast = defineRefTemplate({
     KEY: node.key,
     VALUE: node.value,
   }) as t.ExpressionStatement;
   return ast;
+};
+
+const getSetupBody = (state: ClassComponentState) => {
+  const data = state.data.map(transformDataProperty);
+  return t.blockStatement(data);
+};
+
+const getSetupMethod = (state: ClassComponentState) => {
+  const body = getSetupBody(state);
+  const method = t.objectMethod('method', t.identifier('setup'), [t.identifier('props'), t.identifier('root')], body);
+  return method;
 };
 
 export const transformVueClassComponent = (declaration: t.ClassDeclaration) => {
@@ -61,21 +62,20 @@ export const transformVueClassComponent = (declaration: t.ClassDeclaration) => {
     properties.unshift(name);
   }
 
-  const state = {
+  const state: ClassComponentState = {
     data: [],
   };
 
   // 遍历 class body
   declaration.body.body.forEach((item) => {
     if (t.isClassProperty(item)) {
-      collectDataProperty(item, state);
+      state.data.push(item);
     }
   });
+  const setupMethod = getSetupMethod(state);
+  properties.push(setupMethod);
 
   const option = t.objectExpression(properties);
-  // ast = defineComponentTemplate({
-  //   SOURCE: option,
-  // }) as t.ExpressionStatement
 
   return option;
 };
